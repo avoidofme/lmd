@@ -14,7 +14,7 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o lcd main.go
+RUN go build -o lmd main.go
 
 FROM alpine:3
 
@@ -25,10 +25,10 @@ WORKDIR /app
 
 RUN chown myuser:mygroup /app
 
-COPY --from=builder --chown=myuser:mygroup /app/lcd .
+COPY --from=builder --chown=myuser:mygroup /app/lmd .
 
 USER 1001:1001
 
 EXPOSE 8080
 
-CMD [ "./lcd" ]
+CMD [ "./lmd" ]
